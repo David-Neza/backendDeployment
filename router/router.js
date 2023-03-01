@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const mongoose = require("mongoose");
+const Blogs = require("../models/blogs");
 
 let students = [
   { id: 1, name: "student1" },
@@ -13,6 +15,15 @@ let trainees = [
 
 router.get("/students", (req, res) => {
   res.status(200).send(students);
+});
+
+router.get("/blogs", async (req, res) => {
+  try {
+    const data = await Blogs.find();
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
 router.get("/trainees", (req, res) => {
