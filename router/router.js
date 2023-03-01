@@ -19,6 +19,7 @@ router.get("/students", (req, res) => {
 
 router.get("/blogs", async (req, res) => {
   try {
+    console.log("get my blogs");
     const data = await Blogs.find();
     res.json(data);
   } catch (error) {
